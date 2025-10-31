@@ -59,7 +59,7 @@ def summarize_fn(text: str, length_percent: int) -> str:
                 "min_length": target_tokens,
                 "max_length": target_tokens,
             },
-            timeout=120,
+            timeout=600,
         )
         if resp.status_code != 200:
             return f"Error {resp.status_code}: {resp.text}"
