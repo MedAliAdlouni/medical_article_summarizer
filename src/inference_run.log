@@ -1,0 +1,141 @@
+2025-10-31 07:21:49,475 INFO Starting inference with configuration: {'dataset': {'path': 'E:\\new_projects\\medical_article_summarizer\\data', 'subset': 'train'}, 'architecture': 'encoder_decoder', 'model': 'facebook/bart-large-cnn', 'device': 'cpu'}
+2025-10-31 07:22:11,619 WARNING Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-10-31 07:42:33,940 ERROR Unhandled exception: ("Connection broken: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)", ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2025-10-31 07:42:34,486 ERROR Traceback:
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 779, in _error_catcher
+    yield
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 904, in _raw_read
+    data = self._fp_read(amt, read1=read1) if not fp_closed else b""
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 887, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+           ~~~~~~~~~~~~~^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 479, in read
+    s = self.fp.read(amt)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\models.py", line 820, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 1091, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 980, in read
+    data = self._raw_read(amt)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 903, in _raw_read
+    with self._error_catcher():
+         ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\response.py", line 806, in _error_catcher
+    raise ProtocolError(f"Connection broken: {e!r}", e) from e
+urllib3.exceptions.ProtocolError: ("Connection broken: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)", ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\new_projects\medical_article_summarizer\src\inference.py", line 115, in <module>
+    main()
+    ~~~~^^
+  File "E:\new_projects\medical_article_summarizer\src\inference.py", line 50, in main
+    model = import_model(conf)
+  File "E:\new_projects\medical_article_summarizer\src\models.py", line 11, in import_model
+    pretrained_model = AutoModelForSeq2SeqLM.from_pretrained(conf["model"])
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\models\auto\auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\modeling_utils.py", line 4900, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path=pretrained_model_name_or_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+        transformers_explicit_filename=transformers_explicit_filename,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\modeling_utils.py", line 1037, in _get_resolved_checkpoint_files
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\utils\hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\utils\hub.py", line 567, in cached_files
+    raise e
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\transformers\utils\hub.py", line 479, in cached_files
+    hf_hub_download(
+    ~~~~~~~~~~~~~~~^
+        path_or_repo_id,
+        ^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        local_files_only=local_files_only,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+        # Destination
+    ...<14 lines>...
+        force_download=force_download,
+    )
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\file_download.py", line 1168, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        incomplete_path=Path(blob_path + ".incomplete"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+        xet_file_data=xet_file_data,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\file_download.py", line 1735, in _download_to_tmp_and_move
+    http_get(
+    ~~~~~~~~^
+        url_to_download,
+        ^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        expected_size=expected_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\huggingface_hub\file_download.py", line 493, in http_get
+    for chunk in r.iter_content(chunk_size=constants.DOWNLOAD_CHUNK_SIZE):
+                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\site-packages\requests\models.py", line 822, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ("Connection broken: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)", ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+2025-10-31 10:05:11,650 INFO Loading dataset and running single-sample inference...
+2025-10-31 10:05:12,185 INFO index of sample: 0
+2025-10-31 10:05:12,186 INFO sample of article:
+1 Introduction
+Endocrine therapy is indicated for estrogen receptor (ER)-positive breast cancer (BC) patients to attenuate the cell supportive effect of estrogens and prevent growth of residual micro-metastatic disease after surgery. This can be achieved by mitigated production of estrogens by aromatase inhibitors in postmenopausal women or by inhibiting ER transcriptional activity by the use of selective ER modulators like tamoxifen in premenopausal women. Tamoxifen may also be used in sequence
+2025-10-31 10:05:12,187 INFO Starting inference with configuration: {'dataset': {'path': 'E:\\new_projects\\medical_article_summarizer\\data', 'subset': 'train'}, 'architecture': 'encoder_decoder', 'model': 'facebook/bart-large-cnn', 'device': 'cpu'}
+2025-10-31 10:05:14,680 WARNING Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-10-31 10:09:06,563 INFO Number of chunks: 8
+2025-10-31 10:11:58,893 INFO summary:
+Tamoxifen is regarded as a weak antiestrogen. It is believed to be dependent on enzymatic biotransformation into the active metabolites 4-hydroxy-N-desmethyl tamox ifen (Z-endoxIfen) and Z-4OH The original study prospectively enrolled 1121 patients between October 2003 and May 2008 from seven Norwegian hospitals. Inclusion criteria were completion of primary surgery, completion of six cycles of anthracycline (AC)-containing chemotherapy, and node-positive or pT1c-T4 A total of 406 patients were eligible for this study. The median age of the ‘tamoxifen-only’ group was 41 years, and the distribution of pT1 and pT2 tumors was close to 50/50 (Table 1) All patients received Tamoxifen and seven metabolites were measured in the BM plasma from 406 patients (Table 2) The mean and median concentrations found in BM were comparable to what has been measured in serum from other patient cohorts using the same LC-MS/MS assay. This indicated that the concentrations measured Table 2. Tamoxifen metabolite concentrations. Concentrations are in nm. Red circles represent patients dead of BC, and blue circles represent. patients alive or dead of other causes. N = 406. CV, coefficient of variation (interpatient variability); Tam, tamoxif In the present study, premenopausal patients with operable BC receiving 5 years of adjuvant tamoxifen without subsequent use of aromatase inhibitor had an inferior BCSS if serum concentrations of Z-4OHtam were ≤ 3.26 nm. No significant associations The International Tamoxifen Pharmacogenomics Consortium performed a meta-analysis in 4973 patients from 12 globally distributed study sites. No association was observed between level of active metabolites and luminal-like subtypes, but the results of this post hoc analysis should be interpreted with caution. Z-endoxifen has been reported to be up to 10 times more abundant in serum compared with Z-4OHtam. The median ratio between the two active metabolites is 5.2 and ratios as low as 1 : 2 were identified. The ratio was not normal distributed
+2025-10-31 10:11:59,325 INFO generated abstract:
+Tamoxifen is regarded as a weak antiestrogen. It is believed to be dependent on enzymatic biotransformation into the active metabolites 4-hydroxy-N-desmethyl tamox ifen (Z-endoxIfen) and Z-4OH The original study prospectively enrolled 1121 patients between October 2003 and May 2008 from seven Norwegian hospitals. Inclusion criteria were completion of primary surgery, completion of six cycles of anthracycline (AC)-containing chemotherapy, and node-positive or pT1c-T4 A total of 406 patients were eligible for this study. The median age of the ‘tamoxifen-only’ group was 41 years, and the distribution of pT1 and pT2 tumors was close to 50/50 (Table 1) All patients received Tamoxifen and seven metabolites were measured in the BM plasma from 406 patients (Table 2) The mean and median concentrations found in BM were comparable to what has been measured in serum from other patient cohorts using the same LC-MS/MS assay. This indicated that the concentrations measured Table 2. Tamoxifen metabolite concentrations. Concentrations are in nm. Red circles represent patients dead of BC, and blue circles represent. patients alive or dead of other causes. N = 406. CV, coefficient of variation (interpatient variability); Tam, tamoxif In the present study, premenopausal patients with operable BC receiving 5 years of adjuvant tamoxifen without subsequent use of aromatase inhibitor had an inferior BCSS if serum concentrations of Z-4OHtam were ≤ 3.26 nm. No significant associations The International Tamoxifen Pharmacogenomics Consortium performed a meta-analysis in 4973 patients from 12 globally distributed study sites. No association was observed between level of active metabolites and luminal-like subtypes, but the results of this post hoc analysis should be interpreted with caution. Z-endoxifen has been reported to be up to 10 times more abundant in serum compared with Z-4OHtam. The median ratio between the two active metabolites is 5.2 and ratios as low as 1 : 2 were identified. The ratio was not normal distributed
+2025-10-31 10:11:59,343 INFO Using default tokenizer.
+2025-10-31 10:11:59,407 INFO rouge1: Score(precision=0.3198757763975155, recall=0.5124378109452736, fmeasure=0.3938814531548757)
+2025-10-31 10:11:59,407 INFO rouge2: Score(precision=0.09968847352024922, recall=0.16, fmeasure=0.12284069097888675)
+2025-10-31 10:11:59,407 INFO rougeL: Score(precision=0.13043478260869565, recall=0.208955223880597, fmeasure=0.16061185468451245)

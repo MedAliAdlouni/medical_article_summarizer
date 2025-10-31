@@ -1,0 +1,12 @@
+# ignore data folder
+data/
+*.pyc
+# ignore archive folders
+old/
+old_v2/
+archive/
+summarizer/
+
+model/
+
+notebooks/rendu_final.ipynb
