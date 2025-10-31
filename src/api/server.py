@@ -5,10 +5,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from .config import conf
-from .models import import_model, import_tokenizer
-from .preprocess import baseline_chunking, generate_chunk_summaries
-from .utils import ensure_nltk_resources
+from ..core.config import conf
+from ..core.models import import_model, import_tokenizer
+from ..core.preprocess import baseline_chunking, generate_chunk_summaries
+from ..core.utils import ensure_nltk_resources
 
 
 class SummarizeRequest(BaseModel):
@@ -65,11 +65,11 @@ def summarize(req: SummarizeRequest) -> dict:
     return {"summary": summary}
 
 
-# Enable: python -m src.server
+# Enable: python -m src.api.server
 if __name__ == "__main__":
     import uvicorn
 
     port = int(os.environ.get("PORT", "8000"))
-    uvicorn.run("src.server:app", host="0.0.0.0", port=port, reload=False)
+    uvicorn.run("src.api.server:app", host="0.0.0.0", port=port, reload=False)
 
 
