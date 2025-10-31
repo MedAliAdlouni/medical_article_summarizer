@@ -1,0 +1,20 @@
+.git
+.gitignore
+*.pyc
+__pycache__
+.venv
+venv
+env
+*.ipynb
+data
+notebooks
+*.log
+logs
+# allow copying local model cache for faster builds
+# (comment out if you never want to COPY model into image)
+# model
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+archive
