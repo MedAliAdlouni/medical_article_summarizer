@@ -9,4 +9,6 @@ summarizer/
 
 model/
 
+.vscode/
+
 notebooks/rendu_final.ipynb
